@@ -1,0 +1,54 @@
+{% extends 'leayout.html' %}
+
+{% block title %}
+    <title> 部门管理 </title>
+{% endblock title %}
+
+{% block css %}{% endblock css %}
+
+{% block content %}
+
+    {% comment %} 添加内容 {% endcomment %}
+    <div class="btn-group" role="group" aria-label="...">
+            {% comment %} 按钮 {% endcomment %}
+            <a href="/depart_add/" class="btn btn-primary btn-lg active" role="button">
+              {% comment %} target='_blank' 若是需要跳转新页面需要添加这个 {% endcomment %}
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                新建部门
+            </a>
+        </div>
+        <div style = 'margin-top:18px'>
+            <div class="bs-example" data-example-id="table-within-panel">
+                <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">部门列表</div>
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>部门编号</th>
+                        <th>部门名称</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    {% for department in depart_list %}
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{ department.id }}</th>
+                        <td>{{ department.title }}</td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs"><a style='color:green' href="/depart_edit/{{ department.id }}">编辑</a></button>
+                            <button type="button" class="btn btn-default btn-xs"><a style='color:red' href="/depart_del?nid={{ department.id }}">删除</a></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock content %}
+
+{% block js %}{% endblock js %}
